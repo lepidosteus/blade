@@ -14,6 +14,11 @@ I couldn't find any License or in-file copyright in their repository but comment
 
 Whatever I added on top is under Public Domain.
 
+## usage
+
+Install with ```composer require lepidosteus/blade```
+
+
 ```php
 <?php
 require __DIR__.DIRECTORY_SEPARATOR.'/../vendor/autoload.php';
@@ -45,9 +50,9 @@ $blade->if('foo', function ($value) {
 // or $blade->view()->if(...
 ```
 
-Notes on requires:
+## required libraries:
 
 - "php": ">=7.4": might work with earlier versions (probably anything 7.* at least), but I didn't bother testing it 
 - "illuminate/container": "^8.25": needed to provide our own replacement
-- "illuminate/view": "^8.25": blade itself, it will pull every other dependency it needs
+- "illuminate/view": "^8.25": blade itself, it will pull every other dependencies it needs
 - "ramsey/uuid": "^4.1": needed for custom directives
