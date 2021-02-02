@@ -22,37 +22,32 @@ use Lepidosteus\Blade\Blade;
 
 $blade = new Blade('/path/to/template', '/path/to/compiled/files');
 
-
+// done, you can start rendering
 echo $blade->render('template_name', ['key' => 'value']);
 // has the same result as:
 echo $blade()->make('template_name', ['key' => 'value'])->render();
 // has the same result as:
 echo $blade->view()->make('template_name', ['key' => 'value'])->render();
 
+// shared key will be available in all templates 
 $blade()->share('shared_key', 'shared_value');
 
 // easily add a directive
 $blade->directive('upperize', function ($expression) {
     return "<?php echo strtoupper($expression); ?>";
 });
-// same as
-$blade->view()->directive('upperize', function ($expression) {
-    return "<?php echo strtoupper($expression); ?>";
-});
+// or $blade->view()->directive(...
 
 // easily add a custom if 
 $blade->if('foo', function ($value) {
     return 'bar' === $value;
 });
-// same as
-$blade->view()->if('foo', function ($value) {
-    return 'bar' === $value;
-});
+// or $blade->view()->if(...
 ```
 
 Notes on requires:
 
-"php": ">=7.4": might work with earlier versions (probably anythng 7.* at least), but I don't test it 
-"illuminate/container": "^8.25": needed to provide our own replacement
-"illuminate/view": "^8.25": blade itself, it will pull every other dependency it needs
-"ramsey/uuid": "^4.1": needed for custom directives
+- "php": ">=7.4": might work with earlier versions (probably anythng 7.* at least), but I don't test it 
+- "illuminate/container": "^8.25": needed to provide our own replacement
+- "illuminate/view": "^8.25": blade itself, it will pull every other dependency it needs
+- "ramsey/uuid": "^4.1": needed for custom directives
