@@ -67,8 +67,8 @@ class Blade
         $this->_container->alias(
             \Illuminate\Contracts\View\Factory::class, 
             (new class extends \Illuminate\Support\Facades\View {
-                public static function getFacadeAccessorName() { return static::getFacadeAccessor(); }
-            })::getFacadeAccessorName()
+                public static function getFacadeAccessor() { return parent::getFacadeAccessor(); }
+            })::getFacadeAccessor()
         );
 
         // allows ifdirective (BladeCompiler translates them to several directive doing Facades\Blade calls)
@@ -76,8 +76,8 @@ class Blade
         $this->_container->alias(
             \Illuminate\View\Compilers\BladeCompiler::class, 
             (new class extends \Illuminate\Support\Facades\Blade {
-                public static function getFacadeAccessorName() { return static::getFacadeAccessor(); }
-            })::getFacadeAccessorName()
+                public static function getFacadeAccessor() { return parent::getFacadeAccessor(); }
+            })::getFacadeAccessor()
         );
     }
 
