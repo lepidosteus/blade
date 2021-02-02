@@ -1,0 +1,24 @@
+{
+    "name": "lepidosteus/blade",
+    "description": "Use blade outside laravel, in an easy to use library",
+    "keywords": ["lepidosteus", "blade", "template"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vianney Devreese",
+            "email": "lepidosteus@gmail.com"
+        }
+    ],
+    "type": "library",
+    "require": {
+        "php": ">=7.4",
+        "illuminate/container": "^8.25",
+        "illuminate/view": "^8.25",
+        "ramsey/uuid": "^4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lepidosteus\\Blade\\": "src/"
+        }
+    }
+}
