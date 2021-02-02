@@ -14,13 +14,13 @@ I couldn't find any License or in-file copyright in their repository but comment
 
 Whatever I added on top is under Public Domain.
 
-```
+```php
 <?php
 require __DIR__.DIRECTORY_SEPARATOR.'/../vendor/autoload.php';
 
 use Lepidosteus\Blade\Blade;
 
-$blade = new Blade('/path/to/template', '/path/to/compiled/files);
+$blade = new Blade('/path/to/template', '/path/to/compiled/files');
 
 
 echo $blade->render('template_name', ['key' => 'value']);
