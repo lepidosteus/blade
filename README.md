@@ -47,7 +47,7 @@ $blade->if('foo', function ($value) {
 
 Notes on requires:
 
-- "php": ">=7.4": might work with earlier versions (probably anythng 7.* at least), but I don't test it 
+- "php": ">=7.4": might work with earlier versions (probably anything 7.* at least), but I didn't bother testing it 
 - "illuminate/container": "^8.25": needed to provide our own replacement
 - "illuminate/view": "^8.25": blade itself, it will pull every other dependency it needs
 - "ramsey/uuid": "^4.1": needed for custom directives
