@@ -10,7 +10,7 @@ I created this because:
 
 This is mostly code from [mattstauffer/Torch](https://github.com/mattstauffer/Torch/blob/master/components/view/index.php) but packaged in a ready to use library, then I added if statements support and cleaned up the Facades faking so it doesn't have hardcoded values anymore.
 
-I couldn't find any License or in-file copyright in their repository but comment and description make it clear it's meant to beused and shared. Original authors remain the full owner of their code, and deserve a million thanks for doing all the hard parts.
+I couldn't find any License or in-file copyright in their repository but comment and description make it clear it's meant to be used and shared. Original authors remain the full owner of their code, and deserve a million thanks for doing all the hard parts.
 
 Whatever I added on top is under Public Domain.
 
@@ -21,7 +21,7 @@ Install with ```composer require lepidosteus/blade```
 
 ```php
 <?php
-require __DIR__.DIRECTORY_SEPARATOR.'/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 use Lepidosteus\Blade\Blade;
 
