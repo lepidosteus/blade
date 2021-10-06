@@ -106,7 +106,7 @@ class Blade
         $this->_compiler->if($name, $test);
     }
 
-    public function share(array|string $key, mixed|null $value)
+    public function share(array|string $key, mixed $value)
     {
         $this->_factory->share($key, $value);
     }
