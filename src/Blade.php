@@ -17,9 +17,9 @@ use \Illuminate\Container\Container as LaravelContainer;
 
 class Blade
 {
-    protected $_container;
-    protected $_factory;
-    protected $_compiler;
+    protected Container|LaravelContainer $_container;
+    protected \Illuminate\View\Factory $_factory;
+    protected \Illuminate\View\Compilers\BladeCompiler $_compiler;
 
     public function __construct($templates_path, string $compiled_path, ?LaravelContainer $container = null)
     {
@@ -32,6 +32,17 @@ class Blade
         }
 
         $this->_container = $container;
+
+        /**
+         * We need to provide our compiled dir to a config store to allow createBladeViewFromString() to work
+         * 'view.compiled' is hardcoded in illuminate/view/Component.php:100
+         */
+        $this->_container->offsetSet('config', new Config(['view.compiled' => $compiled_path]));
+
+        /**
+         * Let's remember us, so we can render from components later on
+         */
+        $this->_container->offsetSet(self::class, $this);
 
         // setup our facades
         \Illuminate\Support\Facades\Facade::setFacadeApplication($this->_container);
@@ -81,33 +92,43 @@ class Blade
         );
     }
 
-    public function render($view, $data = [], array $mergeData = [])
+    public function render($view, $data = [], array $mergeData = []): string
     {
         return $this->_factory->make($view, $data, $mergeData)->render();
     }
 
-    public function view()
+    public function view(): \Illuminate\View\Factory
     {
         return $this->_factory;
     }
 
-    public function __invoke()
+    public function __invoke(): \Illuminate\View\Factory
     {
         return $this->_factory;
     }
 
-    public function directive(string $name, Callable $directive)
+    public function directive(string $name, Callable $directive): void
     {
         $this->_compiler->directive($name, $directive);
     }
 
-    public function if(string $name, Callable $test)
+    public function if(string $name, Callable $test): void
     {
         $this->_compiler->if($name, $test);
     }
 
-    public function share(array|string $key, mixed $value)
+    public function share(array|string $key, mixed $value): void
     {
         $this->_factory->share($key, $value);
+    }
+
+    public function component($class, $alias = null, $prefix = ''): void
+    {
+        $this->_compiler->component($class, $alias, $prefix);
+    }
+
+    public function componentNamespace($namespace, $prefix): void
+    {
+        $this->_compiler->componentNamespace($namespace, $prefix);
     }
 }
